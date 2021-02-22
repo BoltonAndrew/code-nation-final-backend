@@ -1,5 +1,6 @@
 // require("./src/db/connection");
-// const { Movies } = require("./src/models/Movies")
+// const { Movie } = require("./src/models/Movie")
+// const { User } = require("./src/models/User")
 
 // Create a test movie in db manually
 // const createMovie = async () => {
@@ -10,7 +11,7 @@
 //             userLikes: ["1234", "12345"],
 //             userRates: [{userId: "1234", rate: "5"}, {userId: "12345", rate:"3"}]
 //         }
-//         const movie = new Movies(data);
+//         const movie = new Movie(data);
 //         const savedMovie = await movie.save();
 //         console.log(savedMovie);
 //     } catch (error) {
@@ -22,3 +23,9 @@
 //     }
 // };
 // createMovie();
+//**--------------------------------------------------------------------------------- */
+// const findUser = async () => {
+//     const user = await User.findOne({email : "test1@1.com"});
+//     console.log(user)
+// }
+// findUser();
