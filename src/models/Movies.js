@@ -19,6 +19,9 @@ userRates: [
         rate: {type: String}
     }
 ],
+posterUrl : {
+    type: String
+}
 }, {timestamps: true});
 
 const Movies = mongoose.model("Movies", moviesSchema)
