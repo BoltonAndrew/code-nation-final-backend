@@ -24,8 +24,8 @@ posterUrl : {
 }
 }, {timestamps: true});
 
-const Movies = mongoose.model("Movies", moviesSchema)
+const Movie = mongoose.model("Movie", moviesSchema)
 
 module.exports = {
-    Movies
+    Movie
 }
