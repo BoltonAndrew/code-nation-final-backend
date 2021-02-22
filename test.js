@@ -1,6 +1,6 @@
 // require("./src/db/connection");
 // const { Movie } = require("./src/models/Movie")
-// const { User } = require("./src/models/User")
+// const { User } = require("./src/models/Users")
 
 // Create a test movie in db manually
 // const createMovie = async () => {
@@ -25,7 +25,7 @@
 // createMovie();
 //**--------------------------------------------------------------------------------- */
 // const findUser = async () => {
-//     const user = await User.findOne({email : "test1@1.com"});
+//     const user = await User.findOne({email : "test2@2.com"});
 //     console.log(user)
 // }
 // findUser();
