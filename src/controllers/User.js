@@ -15,4 +15,14 @@ exports.createUser = async (req, res) => {
     }
 };
 
+exports.logIn = async (req, res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password);
+        const token = await user.generateAuthToken()
+        res.status(200).send({user, token});
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({message: "unable to log in"});
+    }
+};
 
