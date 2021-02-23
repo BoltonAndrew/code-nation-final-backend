@@ -25,7 +25,7 @@
 // createMovie();
 //**--------------------------------------------------------------------------------- */
 // const findUser = async () => {
-//     const user = await User.findOne({email : "test2@2.com"});
+//     const user = await User.findOne({email : "test3@3.com"});
 //     console.log(user)
 // }
 // findUser();
