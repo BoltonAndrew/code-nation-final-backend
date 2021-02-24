@@ -44,10 +44,14 @@ exports.logOut = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
+    console.log('before catch')
     try {
+        console.log('0')
         const query = {_id: `${req.user._id}`}
+        console.log('1st')
         const updatedUser = await User.findOneAndUpdate(query, req.body, { new: true} );
-        res.status(200).send({messgae: `User succesfully updated!`})
+        console.log('2nd')
+        res.status(200).send({updatedUser})
     } catch (error) {
         res.status(404).send({message: "Couldn't update!"})
     }

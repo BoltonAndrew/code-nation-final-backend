@@ -29,13 +29,13 @@ friends: [
     {type: String}
 ],
 acceptedMovies: [
-    {type: String}
+    {type: Object}
 ],
 rejectedMovies: [
-    {type: String}
+    {type: Object}
 ],
 watchedMovies: [
-    {type: String}
+    {type: Object}
 ],
 tokens: [{token: {type: String}}]
 }, {timestamps: true});
