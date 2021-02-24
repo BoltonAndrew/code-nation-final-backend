@@ -25,7 +25,36 @@
 // createMovie();
 //**--------------------------------------------------------------------------------- */
 // const findUser = async () => {
-//     const user = await User.findOne({email : "test3@3.com"});
-//     console.log(user)
+//     const user = await User.findOne({userName: "test3"});
+//     console.log(user.acceptedMovies)
 // }
 // findUser();
+
+
+// const arr1 = ["ahmet", "veli", "sam"]
+// const arr2 = ["sam", "kaz", "mel", "sam"]
+
+// console.log(arr1.concat(arr2).sort())
+
+//find duplicate
+// let strArray = arr1.concat(arr2);
+// let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+// console.log([...new Set(findDuplicates(strArray))]) // Unique duplicates
+
+// find matched element in array
+
+// arr1.forEach((el)=> {
+//     arr2.forEach((el2)=>{
+//         if (el == el2) {
+//             console.log(el)
+//         }
+//     })
+// })
+
+let arr1 = ["1", "2", "3"]
+let arr2 = ["2", "3"]
+let bool = false
+console.log(arr1.filter((item)=>{
+   if(!arr2.includes(item)) {return item}
+    // return item arr2.includes(item)
+ }))
