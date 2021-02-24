@@ -65,26 +65,29 @@ exports.deleteMovie = async (req, res) => {
 exports.matchedMovies = async (req, res) => {
     try {
 
-        const user1 = req.user
+        const user1 = req.user;
         let allAcceptedMovies = [...user1.acceptedMovies];
         let matchedMovies = [];
         let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
+        if (!req.body.users) {
 
-        req.body.users.forEach(async (user, index, arr)=>{
-            let tempUser = await User.find({userName: user});
-            allAcceptedMovies = await tempUser[0].acceptedMovies && allAcceptedMovies.concat(tempUser[0].acceptedMovies);
-
-            allAcceptedMovies = allAcceptedMovies.filter((movie)=>{
-                if(!tempUser[0].rejectedMovies.includes(movie)) {
-                    return movie
-                }});
-
-            matchedMovies =  [...new Set(findDuplicates(allAcceptedMovies))];
-            if(index == arr.length - 1) {
-                res.status(200).send(matchedMovies.length > 0 ? matchedMovies : "sorry you didnt matched on any movies :(");
-            }
-        });
-
+            res.status(200).send(user1.acceptedMovies.length > 0 ? user1.acceptedMovies : "you didn't accepted any movie!" );
+        } else {
+            req.body.users.forEach(async (user, index, arr)=>{
+                let tempUser = await User.find({userName: user});
+                allAcceptedMovies = await tempUser[0].acceptedMovies && allAcceptedMovies.concat(tempUser[0].acceptedMovies);
+    
+                allAcceptedMovies = allAcceptedMovies.filter((movie)=>{
+                    if(!tempUser[0].rejectedMovies.includes(movie)) {
+                        return movie
+                    }});
+    
+                matchedMovies =  [...new Set(findDuplicates(allAcceptedMovies))];
+                if(index == arr.length - 1) {
+                    res.status(200).send(matchedMovies.length > 0 ? matchedMovies : "sorry you didnt matched on any movies :(");
+                };
+            });
+        };
     } catch (error) {
         res.status(500).send({message: "Couldnt matched the movies!"});
     }
