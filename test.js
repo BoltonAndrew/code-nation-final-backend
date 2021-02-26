@@ -51,10 +51,21 @@
 //     })
 // })
 
-let arr1 = ["1", "2", "3"]
-let arr2 = ["2", "3"]
-let bool = false
-console.log(arr1.filter((item)=>{
-   if(!arr2.includes(item)) {return item}
-    // return item arr2.includes(item)
- }))
+// let arr1 = ["1", "2", "3"]
+// let arr2 = ["2", "3"]
+// let bool = false
+// console.log(arr1.filter((item)=>{
+//    if(!arr2.includes(item)) {return item}
+//     // return item arr2.includes(item)
+//  }))
+
+// const getuser = async() => {
+//    const user = await User.find({ "userName": { "$regex": "tes", "$options": "i" } },
+//    function(err,docs) { 
+//    } );
+//    console.log(user)
+// }
+
+// getuser()
+
+
