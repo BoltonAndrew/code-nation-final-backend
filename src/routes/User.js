@@ -6,7 +6,7 @@ const { hashPassword, auth } = require("../middleware/index")
 
 userRouter.post("/users", hashPassword,  createUser);
 userRouter.post("/users/finduser", auth, findUsers)
-userRouter.post("/users/addFriend", auth, addFriend)
+userRouter.post("/users/addfriend", auth, addFriend)
 
 userRouter.post("/users/login", logIn);
 
