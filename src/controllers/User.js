@@ -46,11 +46,8 @@ exports.logOut = async (req, res) => {
 exports.updateUser = async (req, res) => {
     console.log('before catch')
     try {
-        console.log('0')
         const query = {_id: `${req.user._id}`}
-        console.log('1st')
         const updatedUser = await User.findOneAndUpdate(query, req.body, { new: true} );
-        console.log('2nd')
         res.status(200).send({updatedUser})
     } catch (error) {
         res.status(404).send({message: "Couldn't update!"})
@@ -68,3 +65,34 @@ exports.deleteUser = async (req, res) => {
         res.status(500).send({message: "user could not be deleted"})
     }
 };
+
+exports.findUsers = async (req, res) => {
+    try {
+        const users = await User.find({ "userName": { "$regex": `${req.body.input}`, "$options": "i" } },
+        function(err,docs) { 
+        } );
+        let userList = []
+        users.forEach((user)=>{userList.push(user.userName)})
+
+        res.status(200).send({userList});
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({message: "there is no matched users"});
+    }
+};
+
+exports.addFriend = async (req, res) => {
+    try {
+        const user1 = await User.findOne({ "userName": req.user.userName });
+        const user2 = await User.findOne({ "userName": req.body.userName });
+        user1.friends.push(user2.userName)
+        user2.friends.push(user1.userName)
+        await user1.save();
+        await user2.save();
+        res.status(200).send({message: "Friend Added"});
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({message: "You can't be friends :("});
+    }
+};
+
