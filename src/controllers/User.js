@@ -81,3 +81,20 @@ exports.findUsers = async (req, res) => {
     }
 };
 
+exports.addFriend = async (req, res) => {
+    try {
+        const user1 = req.user;
+        const user2 = await User.find({ "userName": req.body.userName });
+        user1.friends.push(user2.userName)
+        user2.friends.push(user1.userName)
+        await user1.save();
+        await user2.save();
+
+
+        res.status(200).send({message: "Friend Added"});
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({message: "there is no matched users"});
+    }
+};
+

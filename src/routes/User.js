@@ -1,11 +1,12 @@
 const {Router} = require("express");
-const { createUser, logIn, getMyProfile, logOut, updateUser, deleteUser, findUsers } = require("../controllers/User")
+const { createUser, logIn, getMyProfile, logOut, updateUser, deleteUser, findUsers, addFriend } = require("../controllers/User")
 const userRouter = Router();
 const { hashPassword, auth } = require("../middleware/index")
 
 
 userRouter.post("/users", hashPassword,  createUser);
 userRouter.post("/users/finduser", auth, findUsers)
+userRouter.post("/users/addFriend", auth, addFriend)
 
 userRouter.post("/users/login", logIn);
 
