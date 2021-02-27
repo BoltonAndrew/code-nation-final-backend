@@ -21,7 +21,6 @@ try {
     }
     req.user = user;
     req.token = token;
-    console.log('auth successful')
     next();
 } catch (error) {
     res.status(401).send({message: "Please log in"});

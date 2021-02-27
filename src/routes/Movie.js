@@ -9,7 +9,7 @@ movieRouter.get("/movie",auth, getMovie);
 movieRouter.get("/moviesAll", auth, getAllMovies);
 movieRouter.patch("/movie", auth, updateMovie);
 movieRouter.delete("/movie", auth,deleteMovie);
-movieRouter.get("/movie/match", auth, matchedMovies);
+movieRouter.post("/movie/match", auth, matchedMovies);
 
 
 

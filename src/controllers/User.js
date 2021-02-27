@@ -44,7 +44,6 @@ exports.logOut = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
-    console.log('before catch')
     try {
         const query = {_id: `${req.user._id}`}
         const updatedUser = await User.findOneAndUpdate(query, req.body, { new: true} );
