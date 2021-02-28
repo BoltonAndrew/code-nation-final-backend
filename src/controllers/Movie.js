@@ -66,7 +66,10 @@ exports.matchedMovies = async (req, res) => {
     try {
 
         const user1 = req.user;
-        let allAcceptedMovies = [...user1.acceptedMovies];
+        let allAcceptedMovies = user1.acceptedMovies.map((movie) => {
+                return movie.title
+        });
+        
         let matchedMovies = [];
         let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
         if (!req.body.users) {
@@ -75,10 +78,16 @@ exports.matchedMovies = async (req, res) => {
         } else {
             req.body.users.forEach(async (user, index, arr)=>{
                 let tempUser = await User.find({userName: user});
-                allAcceptedMovies = await tempUser[0].acceptedMovies && allAcceptedMovies.concat(tempUser[0].acceptedMovies);
+                let tempUserMovies = tempUser[0].acceptedMovies.map((movie) => {
+                    return movie.title
+                })
+                let tempUserRejMovies = tempUser[0].rejectedMovies.map((movie) => {
+                    return movie.title
+                })
+                allAcceptedMovies = await tempUserMovies && allAcceptedMovies.concat(tempUserMovies);
     
                 allAcceptedMovies = allAcceptedMovies.filter((movie)=>{
-                    if(!tempUser[0].rejectedMovies.includes(movie)) {
+                    if(!tempUserRejMovies.includes(movie)) {
                         return movie
                     }});
     
