@@ -88,7 +88,7 @@ exports.addFriend = async (req, res) => {
         user2.friends.push(user1.userName)
         await user1.save();
         await user2.save();
-        res.status(200).send({message: "Friend Added"});
+        res.status(200).send({updateduser: user1});
     } catch (error) {
         console.log(error)
         res.status(400).send({message: "You can't be friends :("});
